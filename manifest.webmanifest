@@ -1,0 +1,10 @@
+{
+  "name": "Farmacia Atenas, C.A.",
+  "short_name": "Atenas",
+  "description": "Sitio institucional de Farmacia Atenas, C.A.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f4ec",
+  "theme_color": "#073f46",
+  "icons": []
+}

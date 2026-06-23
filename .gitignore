@@ -1,0 +1,6 @@
+# Perfiles temporales usados únicamente para la revisión visual local
+.chrome-preview/
+.edge-preview/
+
+# Capturas de revisión; no forman parte del sitio publicado
+preview-*.png
