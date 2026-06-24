@@ -9,7 +9,7 @@
     <meta property="og:description" content="Salud, confianza y atención cerca de ti." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="assets/hero-placeholder.svg" />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/logoatenas.png" type="image/png" />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="stylesheet" href="css/styles.css" />
     <script type="module" src="js/main.js"></script>
@@ -21,7 +21,7 @@
     <header class="site-header" id="siteHeader">
       <div class="nav-shell container">
         <a class="brand" href="#inicio" aria-label="Farmacia Atenas, inicio">
-          <img src="assets/logo.svg" alt="" width="46" height="46" />
+          <img src="assets/logoatenas.png" alt="Logotipo de Farmacia Atenas" width="52" height="52" />
           <span>
             <strong>FARMACIA ATENAS</strong>
             <small>Salud · Confianza · Cercanía</small>
@@ -47,8 +47,8 @@
 
     <main id="contenido">
       <section class="hero" id="inicio" aria-labelledby="heroTitle">
-        <video class="hero-video" id="heroVideo" muted loop playsinline aria-hidden="true"></video>
-        <img class="hero-poster" id="heroPoster" src="assets/hero-placeholder.svg" alt="Composición visual provisional para la portada de Farmacia Atenas" />
+        <video class="hero-video" id="heroVideo" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+        <img class="hero-poster" id="heroPoster" src="assets/FACHADA1.jpeg" alt="Fachada de Farmacia Atenas en La Grita" />
         <div class="hero-overlay"></div>
         <div class="hero-orb hero-orb-one"></div>
         <div class="hero-orb hero-orb-two"></div>
@@ -63,7 +63,7 @@
             <a class="button button-primary" href="#servicios">Conoce nuestros servicios</a>
             <a class="button button-ghost" href="#ubicacion">Cómo llegar</a>
           </div>
-          <p class="hero-note"><span class="live-dot"></span> Sitio institucional en construcción: fotografías, dirección exacta y horario por confirmar.</p>
+          <p class="hero-note"><span class="live-dot"></span> Farmacia Atenas de La Grita, C.A. · Atención cercana para nuestra comunidad.</p>
         </div>
 
         <a class="scroll-indicator" href="#confianza" aria-label="Continuar al contenido">
@@ -83,8 +83,11 @@
         <div class="container split-layout">
           <div class="about-visual reveal" aria-label="Espacio reservado para fotografía de la farmacia">
             <div class="visual-card visual-card-main">
-              <span>FOTOGRAFÍA<br />DE LA FARMACIA</span>
-              <small>Se sustituirá al recibir el material real</small>
+              <img src="assets/FACHADA1.jpeg" alt="Fachada principal de Farmacia Atenas de La Grita" loading="lazy" />
+              <div class="visual-caption">
+                <span>NUESTRA SEDE</span>
+                <small>La Grita, estado Táchira</small>
+              </div>
             </div>
             <div class="visual-badge">
               <strong>ATENAS</strong>
@@ -176,13 +179,13 @@
               <p class="eyebrow">PROMOCIONES Y NOVEDADES</p>
               <h2>Un espacio dinámico para ofertas destacadas.</h2>
             </div>
-            <p>Las promociones mostradas son ejemplos visuales. Antes de publicar deberán confirmarse precio, moneda, disponibilidad, vigencia y condiciones de venta.</p>
+            <p>Conoce productos, categorías y novedades disponibles en Farmacia Atenas mediante piezas gráficas y videos informativos.</p>
           </div>
 
           <div class="promo-grid" id="promoGrid" aria-live="polite"></div>
 
           <div class="promo-disclaimer reveal">
-            <strong>Información responsable:</strong> las promociones no sustituyen indicación médica. La dispensación de productos sujetos a prescripción requiere la documentación correspondiente.
+            <strong>Información responsable:</strong> consulta disponibilidad, precio, vigencia y condiciones de venta. Estas publicaciones no sustituyen la indicación médica; los productos sujetos a prescripción requieren la documentación correspondiente.
           </div>
         </div>
       </section>
@@ -192,14 +195,21 @@
           <div class="section-heading centered reveal">
             <p class="eyebrow dark">GALERÍA</p>
             <h2>Conoce nuestros espacios.</h2>
-            <p>Estos bloques serán reemplazados por las fotografías reales del establecimiento.</p>
+            <p>Un recorrido visual por nuestra fachada, área de atención y espacios de exhibición.</p>
           </div>
           <div class="gallery-grid">
-            <figure class="gallery-item gallery-item-wide reveal"><span>Fachada principal</span></figure>
-            <figure class="gallery-item reveal"><span>Área de atención</span></figure>
-            <figure class="gallery-item reveal"><span>Productos y estantes</span></figure>
-            <figure class="gallery-item reveal"><span>Equipo de trabajo</span></figure>
-            <figure class="gallery-item gallery-item-wide reveal"><span>Identidad de Farmacia Atenas</span></figure>
+            <figure class="gallery-item gallery-item-wide reveal">
+              <img src="assets/FACHADA1.jpeg" alt="Vista exterior de Farmacia Atenas de La Grita" loading="lazy" />
+              <span>Fachada principal</span>
+            </figure>
+            <figure class="gallery-item reveal">
+              <img src="assets/FACHADA3.jpeg" alt="Entrada y área de atención de Farmacia Atenas" loading="lazy" />
+              <span>Entrada y atención al público</span>
+            </figure>
+            <figure class="gallery-item reveal">
+              <img src="assets/ESTANTES3.jpeg" alt="Estantes y productos disponibles en Farmacia Atenas" loading="lazy" />
+              <span>Productos y estantes</span>
+            </figure>
           </div>
         </div>
       </section>
@@ -245,7 +255,7 @@
     <footer class="site-footer">
       <div class="container footer-grid">
         <div class="footer-brand">
-          <img src="assets/logo.svg" alt="" width="54" height="54" />
+          <img src="assets/logoatenas.png" alt="Logotipo de Farmacia Atenas" width="62" height="62" />
           <div><strong>Farmacia Atenas, C.A.</strong><span>La Grita, Táchira.</span></div>
         </div>
         <div>
@@ -262,6 +272,8 @@
         <span>Proyecto institucional desarrollado durante el proceso de pasantías.</span>
       </div>
     </footer>
+
+    <div class="pharmacy-cursor" id="pharmacyCursor" aria-hidden="true"><span></span></div>
 
   </body>
 </html>

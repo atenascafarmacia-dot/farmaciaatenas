@@ -4,39 +4,31 @@ Sitio institucional estático desarrollado con HTML5, CSS3 y JavaScript, prepara
 
 ## Estado actual
 
-- Estructura completa y responsiva.
+- Diseño completo y adaptable a computadoras, tabletas y teléfonos.
 - Menú transparente con desenfoque y cambio de apariencia al desplazarse.
-- Portada animada provisional preparada para video real.
+- Video real de la farmacia como fondo de la portada, con fotografía de respaldo.
+- Logotipo institucional en encabezado, pie de página y favicon.
 - Secciones de historia, misión, visión, servicios, promociones, galería, ubicación y contacto.
-- Promociones editables desde `js/content.js`.
-- Metadatos SEO, favicon, manifiesto, `robots.txt` y `sitemap.xml`.
-- Navegación accesible, menú móvil y soporte para reducción de movimiento.
+- Promociones gráficas y audiovisuales cargadas dinámicamente desde `js/content.js`.
+- Galería con fotografías reales de la fachada y los estantes.
+- Cursor farmacéutico complementario para dispositivos con mouse.
+- Metadatos SEO, manifiesto, `robots.txt`, `sitemap.xml` y navegación accesible.
 
-## Sustituir el recurso principal por un video
+## Recursos audiovisuales
 
-1. Crear la carpeta `assets/video/`.
-2. Agregar un archivo optimizado, preferiblemente `farmacia-hero.webm` y menor a 8 MB.
-3. Editar `js/content.js`:
+Los archivos utilizados por el sitio están en `assets/`:
 
-```js
-heroVideo: "assets/video/farmacia-hero.webm",
-```
-
-El video debe ser corto, silencioso, reproducirse en bucle y contar con autorización de las personas que aparezcan. La imagen SVG actual seguirá funcionando como respaldo.
-
-## Sustituir fotografías
-
-Los bloques de galería son provisionales. Al recibir las fotografías reales se recomienda:
-
-- exportarlas en WebP y JPG;
-- usar un ancho máximo de 1600 px;
-- eliminar metadatos innecesarios;
-- proporcionar un texto alternativo descriptivo;
-- evitar fotografías de pacientes, recetas o datos personales.
+- `farmacia.mp4`: fondo de la portada superior.
+- `antiacido.mp4` y `neuromix.mp4`: promociones audiovisuales.
+- `FACHADA1.jpeg`, `FACHADA3.jpeg` y `ESTANTES3.jpeg`: presentación institucional y galería.
+- `logoatenas.png`: identidad visual principal.
+- Las demás imágenes PNG y JPEG se emplean en el catálogo de promociones.
 
 ## Editar promociones
 
-Todas las promociones están centralizadas en `js/content.js`. Antes de publicar una oferta real se debe confirmar:
+Las promociones están centralizadas en `js/content.js`. Cada elemento indica tipo de recurso, archivo, categoría, nombre, texto alternativo y nota informativa.
+
+Antes de anunciar precios o beneficios específicos deben confirmarse:
 
 - nombre y presentación exacta;
 - precio y moneda;
@@ -45,15 +37,13 @@ Todas las promociones están centralizadas en `js/content.js`. Antes de publicar
 - condición de venta y restricciones aplicables;
 - autorización de Farmacia Atenas, C.A.
 
-Los ejemplos actuales son únicamente demostrativos y no constituyen recomendación médica.
+Las publicaciones no sustituyen la indicación médica.
 
 ## Datos pendientes
 
 - Dirección exacta.
 - Horario de atención.
 - Enlaces de redes sociales.
-- Fotografías y video autorizados.
-- Promociones reales verificadas.
 
 ## Contacto provisional
 

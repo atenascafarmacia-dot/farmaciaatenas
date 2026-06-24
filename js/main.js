@@ -5,6 +5,7 @@ const menuToggle = document.querySelector("#menuToggle");
 const mainNav = document.querySelector("#mainNav");
 const heroVideo = document.querySelector("#heroVideo");
 const promoGrid = document.querySelector("#promoGrid");
+const pharmacyCursor = document.querySelector("#pharmacyCursor");
 
 const setHeaderState = () => header?.classList.toggle("scrolled", window.scrollY > 40);
 setHeaderState();
@@ -52,20 +53,53 @@ if (siteContent.heroVideo && heroVideo) {
 if (promoGrid) {
   promoGrid.innerHTML = siteContent.promotions
     .map(
-      (promo) => `
-        <article class="promo-card ${promo.featured ? "featured" : ""} reveal">
-          <div class="promo-top">
+      (promo) => {
+        const media = promo.type === "video"
+          ? `<video class="promo-media" muted loop playsinline preload="metadata" controls aria-label="${promo.name}">
+               <source src="${promo.src}" type="video/mp4" />
+             </video>`
+          : `<img class="promo-media" src="${promo.src}" alt="${promo.alt}" loading="lazy" />`;
+
+        return `
+        <article class="promo-card promo-card-${promo.type} reveal">
+          <div class="promo-media-wrap">${media}</div>
+          <div class="promo-body">
             <span class="promo-label">${promo.label}</span>
-            <span class="promo-icon" aria-hidden="true">${promo.icon}</span>
+            <h3>${promo.name}</h3>
+            <p class="promo-note">${promo.note}</p>
           </div>
-          <h3>${promo.name}</h3>
-          <p class="promo-offer">${promo.offer}</p>
-          <p class="promo-note">${promo.note}</p>
         </article>
-      `,
+      `;
+      },
     )
     .join("");
   promoGrid.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+  const promoVideoObserver = new IntersectionObserver(
+    (entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.play().catch(() => {});
+      else entry.target.pause();
+    }),
+    { threshold: 0.55 },
+  );
+  promoGrid.querySelectorAll("video").forEach((video) => promoVideoObserver.observe(video));
+
+  const requestedSection = document.getElementById(window.location.hash.slice(1));
+  if (requestedSection) requestAnimationFrame(() => requestedSection.scrollIntoView());
+}
+
+if (pharmacyCursor && window.matchMedia("(pointer: fine)").matches) {
+  window.addEventListener("pointermove", (event) => {
+    pharmacyCursor.style.setProperty("--cursor-x", `${event.clientX}px`);
+    pharmacyCursor.style.setProperty("--cursor-y", `${event.clientY}px`);
+    pharmacyCursor.classList.add("visible");
+  }, { passive: true });
+
+  document.addEventListener("pointerover", (event) => {
+    pharmacyCursor.classList.toggle("active", Boolean(event.target.closest("a, button, video[controls]")));
+  });
+
+  document.documentElement.addEventListener("mouseleave", () => pharmacyCursor.classList.remove("visible"));
 }
 
 document.querySelector("#currentYear").textContent = new Date().getFullYear();
