@@ -16,6 +16,13 @@ export const siteContent = {
       note: "Productos pensados para complementar el cuidado cotidiano.",
     },
     {
+      type: "video",
+      src: "assets/Los%20antibi%C3%B3ticos.mp4",
+      label: "Video informativo",
+      name: "Uso responsable de antibióticos",
+      note: "Información educativa sobre la importancia de utilizar antibióticos solo bajo orientación profesional.",
+    },
+    {
       type: "image",
       src: "assets/promocion1.png",
       label: "Novedades",
