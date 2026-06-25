@@ -5,6 +5,15 @@ const menuToggle = document.querySelector("#menuToggle");
 const mainNav = document.querySelector("#mainNav");
 const heroVideo = document.querySelector("#heroVideo");
 const promoGrid = document.querySelector("#promoGrid");
+const promoPrev = document.querySelector("#promoPrev");
+const promoNext = document.querySelector("#promoNext");
+const promoDots = document.querySelector("#promoDots");
+const promoLightbox = document.querySelector("#promoLightbox");
+const promoLightboxMedia = document.querySelector("#promoLightboxMedia");
+const promoLightboxLabel = document.querySelector("#promoLightboxLabel");
+const promoLightboxTitle = document.querySelector("#promoLightboxTitle");
+const promoLightboxNote = document.querySelector("#promoLightboxNote");
+const promoLightboxClose = document.querySelector("#promoLightboxClose");
 const pharmacyCursor = document.querySelector("#pharmacyCursor");
 
 const setHeaderState = () => header?.classList.toggle("scrolled", window.scrollY > 40);
@@ -53,7 +62,7 @@ if (siteContent.heroVideo && heroVideo) {
 if (promoGrid) {
   promoGrid.innerHTML = siteContent.promotions
     .map(
-      (promo) => {
+      (promo, index) => {
         const media = promo.type === "video"
           ? `<video class="promo-media" muted loop playsinline preload="metadata" controls aria-label="${promo.name}">
                <source src="${promo.src}" type="video/mp4" />
@@ -61,7 +70,7 @@ if (promoGrid) {
           : `<img class="promo-media" src="${promo.src}" alt="${promo.alt}" loading="lazy" />`;
 
         return `
-        <article class="promo-card promo-card-${promo.type} reveal">
+        <article class="promo-card promo-card-${promo.type} reveal" tabindex="0" role="button" aria-label="Ver promoción ${promo.name}" data-promo-index="${index}">
           <div class="promo-media-wrap">${media}</div>
           <div class="promo-body">
             <span class="promo-label">${promo.label}</span>
@@ -74,6 +83,83 @@ if (promoGrid) {
     )
     .join("");
   promoGrid.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+  if (promoDots) {
+    promoDots.innerHTML = siteContent.promotions
+      .map((promo, index) => `<button type="button" aria-label="Ir a ${promo.name}" data-promo-dot="${index}"></button>`)
+      .join("");
+  }
+
+  const cards = [...promoGrid.querySelectorAll(".promo-card")];
+  const dots = [...document.querySelectorAll("[data-promo-dot]")];
+
+  const updatePromoDots = () => {
+    const gridLeft = promoGrid.getBoundingClientRect().left;
+    const nearest = cards
+      .map((card, index) => ({ index, distance: Math.abs(card.getBoundingClientRect().left - gridLeft) }))
+      .sort((a, b) => a.distance - b.distance)[0];
+
+    dots.forEach((dot, index) => dot.classList.toggle("active", index === nearest?.index));
+  };
+
+  const scrollToPromo = (index) => cards[index]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+
+  const getActivePromoIndex = () => {
+    const activeDot = dots.findIndex((dot) => dot.classList.contains("active"));
+    return activeDot >= 0 ? activeDot : 0;
+  };
+
+  promoPrev?.addEventListener("click", () => scrollToPromo(Math.max(getActivePromoIndex() - 1, 0)));
+  promoNext?.addEventListener("click", () => scrollToPromo(Math.min(getActivePromoIndex() + 1, cards.length - 1)));
+  dots.forEach((dot, index) => dot.addEventListener("click", () => scrollToPromo(index)));
+  promoGrid.addEventListener("scroll", () => requestAnimationFrame(updatePromoDots), { passive: true });
+  window.addEventListener("resize", updatePromoDots);
+  updatePromoDots();
+
+  const openPromoLightbox = (index) => {
+    const promo = siteContent.promotions[index];
+    if (!promo || !promoLightbox || !promoLightboxMedia) return;
+
+    promoLightboxMedia.innerHTML = promo.type === "video"
+      ? `<video class="promo-lightbox-file" controls autoplay playsinline>
+           <source src="${promo.src}" type="video/mp4" />
+         </video>`
+      : `<img class="promo-lightbox-file" src="${promo.src}" alt="${promo.alt}" />`;
+    promoLightboxLabel.textContent = promo.label;
+    promoLightboxTitle.textContent = promo.name;
+    promoLightboxNote.textContent = promo.note;
+    promoLightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    promoLightboxClose?.focus();
+  };
+
+  const closePromoLightbox = () => {
+    if (!promoLightbox || !promoLightboxMedia) return;
+    promoLightbox.setAttribute("aria-hidden", "true");
+    promoLightboxMedia.innerHTML = "";
+    document.body.classList.remove("lightbox-open");
+  };
+
+  cards.forEach((card) => {
+    const index = Number(card.dataset.promoIndex);
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("video")) return;
+      openPromoLightbox(index);
+    });
+    card.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      openPromoLightbox(index);
+    });
+  });
+
+  promoLightboxClose?.addEventListener("click", closePromoLightbox);
+  promoLightbox?.addEventListener("click", (event) => {
+    if (event.target === promoLightbox) closePromoLightbox();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && promoLightbox?.getAttribute("aria-hidden") === "false") closePromoLightbox();
+  });
 
   const promoVideoObserver = new IntersectionObserver(
     (entries) => entries.forEach((entry) => {

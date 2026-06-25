@@ -182,7 +182,19 @@
             <p>Conoce productos, categorías y novedades disponibles en Farmacia Atenas mediante piezas gráficas y videos informativos.</p>
           </div>
 
-          <div class="promo-grid" id="promoGrid" aria-live="polite"></div>
+          <div class="promo-carousel reveal" aria-label="Carrusel de promociones">
+            <button class="promo-control promo-control-prev" id="promoPrev" type="button" aria-label="Ver promoción anterior">
+              <span aria-hidden="true">‹</span>
+            </button>
+
+            <div class="promo-grid" id="promoGrid" aria-live="polite"></div>
+
+            <button class="promo-control promo-control-next" id="promoNext" type="button" aria-label="Ver promoción siguiente">
+              <span aria-hidden="true">›</span>
+            </button>
+          </div>
+
+          <div class="promo-dots" id="promoDots" aria-label="Indicadores de promociones"></div>
 
           <div class="promo-disclaimer reveal">
             <strong>Información responsable:</strong> consulta disponibilidad, precio, vigencia y condiciones de venta. Estas publicaciones no sustituyen la indicación médica; los productos sujetos a prescripción requieren la documentación correspondiente.
@@ -274,6 +286,18 @@
     </footer>
 
     <div class="pharmacy-cursor" id="pharmacyCursor" aria-hidden="true"><span></span></div>
+
+    <div class="promo-lightbox" id="promoLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="promoLightboxTitle">
+      <button class="promo-lightbox-close" id="promoLightboxClose" type="button" aria-label="Cerrar promoción ampliada">×</button>
+      <div class="promo-lightbox-card" role="document">
+        <div class="promo-lightbox-media" id="promoLightboxMedia"></div>
+        <div class="promo-lightbox-copy">
+          <span id="promoLightboxLabel"></span>
+          <h3 id="promoLightboxTitle"></h3>
+          <p id="promoLightboxNote"></p>
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>
