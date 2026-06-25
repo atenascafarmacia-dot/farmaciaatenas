@@ -275,7 +275,8 @@ button { color: inherit; }
 
 .location { background: var(--cream); }
 .location-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(50px, 8vw, 100px); align-items: center; }
-.map-card { position: relative; min-height: 490px; display: grid; place-items: center; overflow: hidden; border-radius: var(--radius); color: var(--white); background: var(--green-900); box-shadow: var(--shadow); }
+.map-card { position: relative; min-height: 490px; display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(3, 47, 53, .1); border-radius: var(--radius); color: var(--white); background: var(--green-900); box-shadow: var(--shadow); }
+.map-card iframe { width: 100%; height: 100%; min-height: 490px; border: 0; filter: saturate(.95) contrast(1.02); }
 .map-lines { position: absolute; inset: 0; opacity: .18; background-image: linear-gradient(30deg, transparent 45%, #fff 46%, #fff 47%, transparent 48%), linear-gradient(-35deg, transparent 58%, #fff 59%, #fff 60%, transparent 61%); background-size: 120px 90px, 180px 130px; }
 .map-pin { position: relative; width: 90px; height: 90px; display: grid; place-items: center; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); color: var(--green-950); background: var(--gold); box-shadow: 0 20px 45px rgba(0, 0, 0, .25); }
 .map-pin span { transform: rotate(45deg); font-size: 2rem; }
